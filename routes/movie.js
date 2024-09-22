@@ -82,8 +82,19 @@ router.get('/between/:start_year/:end_year', async (req, res) => {
 // getting all movies
 router.get('/', async (req, res) => {
   try {
-
-    const allMovies = await Movie.find({});
+    const allMovies = await Movie.aggregate([
+      {
+        $lookup: {
+          from: 'directors',
+          localField: 'director_id',
+          foreignField: '_id',
+          as: 'director'
+        }
+      },
+      {
+        $unwind: "$director"
+      }
+    ]);
     res.json(allMovies);
   }
   catch (err) {

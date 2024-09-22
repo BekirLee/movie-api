@@ -134,16 +134,46 @@ router.get('/:director_id', async (req, res, next) => {
     catch (err) {
         console.log(err, 'error while fetching all directors')
     }
-    //     try {
-    //         const directorId = req.params.director_id;
-    //         const director = await Director.findById(directorId);
-    //         if (!director)
-    //             next({ message: 'cant find director with id' })
-    //         res.json(director);
-    //     }
-    //     catch (err) {
-    //         console.log(err, 'error with finding directors info')
-    //     }
 })
+
+// updating director infos
+router.put('/:director_id', async (req, res) => {
+    const directorId = req.params.director_id
+    const findedDirector = await Director.findByIdAndUpdate(
+        directorId,
+        req.body,
+        {
+            new: true
+        })
+    try {
+
+        if (!findedDirector)
+            next({ message: 'dircetor isnt founded', code: 99 })
+        res.json(findedDirector)
+    } catch (err) {
+        console.log(err, 'error for director isnt founded')
+    }
+})
+
+// deleting selected director
+router.delete('/:director_id', async (req, res) => {
+
+    const directorId = req.params.director_id
+    const findedDirector = await Director.findByIdAndDelete(
+        directorId,
+        req.body,
+        {
+            new: true
+        })
+    try {
+
+        if (!findedDirector)
+            next({ message: 'director isnt founded', code: 99 })
+        res.json('status :1')
+    } catch (err) {
+        console.log(err, 'error for director isnt founded')
+    }
+})
+
 
 export default router

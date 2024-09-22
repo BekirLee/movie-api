@@ -7,8 +7,13 @@ const DirectorSchema = new Schema({
   title: {
     type: String,
     required: true,
+    maxlength: 60,
+    minlength: 2
   },
-  bio: String,
+  bio: {
+    type: String,
+    maxlength: 1000,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

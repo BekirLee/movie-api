@@ -13,7 +13,7 @@ const app = express();
 
 mongoose.connect('mongodb://localhost:27017/test')
   .then(() => {
-    console.log('cennect to server!')
+    console.log('connect to server!')
   })
   .catch((err) => {
     console.log(err, 'cant connect!')

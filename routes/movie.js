@@ -6,7 +6,6 @@ const router = express.Router();
 
 // updating movies
 router.put('/:movie_id', async (req, res) => {
-
   const movie_id = req.params.movie_id
   const findedMovie = await Movie.findByIdAndUpdate(
     movie_id,
@@ -23,6 +22,42 @@ router.put('/:movie_id', async (req, res) => {
     console.log(err, 'error for movie isnt founded')
   }
 })
+
+// deleting selected movie
+router.delete('/:movie_id', async (req, res) => {
+
+  const movie_id = req.params.movie_id
+  const findedMovie = await Movie.findByIdAndDelete(
+    movie_id,
+    req.body,
+    {
+      new: true
+    })
+  try {
+
+    if (!findedMovie)
+      next({ message: 'movie isnt founded', code: 99 })
+    res.json('findedMovie')
+  } catch (err) {
+    console.log(err, 'error for movie isnt founded')
+  }
+})
+
+// getting top10 movies
+router.get('/top10', async (req, res) => {
+
+  const movie_id = req.params.movie_id
+  const findedMovies = await Movie.find({}).limit(10).sort({ imdb: -1 })
+  try {
+
+    if (!findedMovies)
+      next({ message: 'movie isnt founded', code: 99 })
+    res.json(findedMovies)
+  } catch (err) {
+    console.log(err, 'error for movie isnt founded')
+  }
+})
+
 
 // getting all movies
 router.get('/', async (req, res) => {

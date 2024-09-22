@@ -58,6 +58,26 @@ router.get('/top10', async (req, res) => {
   }
 })
 
+// between years
+router.get('/between/:start_year/:end_year', async (req, res) => {
+
+  const { start_year, end_year } = req.params;
+
+  const findedMovies = await Movie.find(
+    {
+      year: { '$gte': parseInt(start_year), '$lte': parseInt(end_year) }
+    }
+  )
+  try {
+
+    if (!findedMovies)
+      next({ message: 'movie isnt founded', code: 99 })
+    res.json(findedMovies)
+  } catch (err) {
+    console.log(err, 'error for movie isnt founded')
+  }
+})
+
 
 // getting all movies
 router.get('/', async (req, res) => {

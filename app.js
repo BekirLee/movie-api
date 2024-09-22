@@ -7,6 +7,7 @@ import path from 'path';
 // Import your routes
 import indexRouter from './routes/index.js';
 import movie from './routes/movie.js';
+import director from './routes/director.js';
 import mongoose from 'mongoose';
 
 const app = express();
@@ -30,6 +31,7 @@ app.use(cookieParser());
 // Set up routes
 app.use('/', indexRouter);
 app.use('/movies', movie);
+app.use('/director', director);
 
 
 

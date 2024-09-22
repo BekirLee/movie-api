@@ -2,21 +2,18 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const MovieSchema = new Schema({
-  director_id: Schema.Types.ObjectId,
+const DirectorSchema = new Schema({
+  //   director_id: Schema.Types.ObjectId,
   title: {
     type: String,
     required: true,
   },
-  category: String,
-  country: String,
-  year: Number,
-  imdb: Number,
+  bio: String,
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-const Movie = mongoose.model('Movie', MovieSchema);
+const Movie = mongoose.model('director', DirectorSchema);
 export default Movie;

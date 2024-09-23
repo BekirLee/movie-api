@@ -20,5 +20,5 @@ const DirectorSchema = new Schema({
   },
 });
 
-const Movie = mongoose.model('director', DirectorSchema);
-export default Movie;
+const Director = mongoose.model('director', DirectorSchema);
+export default Director;

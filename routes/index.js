@@ -1,7 +1,10 @@
 import express from 'express'
 import User from '../models/User.js';
-const router = express.Router();
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import { api_secret_key } from '../config.js';
+
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -26,7 +29,48 @@ router.post('/register', (req, res, next) => {
   catch (err) {
     res.json(err)
   }
+});
 
+router.post('/authenticate', (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+
+    User.findOne(
+      { username }, async function (err, user) {
+        if (err) {
+          throw err;
+        }
+        if (!user) {
+          res.json({
+            status: false,
+            message: "cant find user"
+          })
+        }
+        else {
+          bcrypt.compare(password, user.password).then((result) => {
+            if (!result) {
+              res.json({
+                message: 'error in result',
+                status: false
+              })
+            }
+            else {
+              const payload = { username };
+              const token = jwt.sign(payload, api_secret_key, { expiresIn: '12h' })
+              res.json({
+                status: true,
+                token
+              })
+            }
+          })
+        }
+      }
+    )
+  }
+
+  catch (err) {
+    res.json(err)
+  }
 });
 
 

@@ -10,7 +10,12 @@ import movie from './routes/movie.js';
 import director from './routes/director.js';
 import mongoose from 'mongoose';
 
+//Config
+// import { api_secret_key } from './config.js'
+
 const app = express();
+
+// app.set('api_secret_key', api_secret_key);
 
 mongoose.connect('mongodb://localhost:27017/test')
   .then(() => {
@@ -22,6 +27,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
 // view engine setup
 app.set('view engine', 'jade');
+
 
 app.use(morgan('dev'));
 app.use(express.json()); // Use the built-in body parser for JSON

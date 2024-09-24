@@ -6,11 +6,12 @@ import { api_secret_key } from '../config.js';
 
 const router = express.Router();
 
-/* GET home page. */
+// home page. 
 router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
+// register
 router.post('/register', async (req, res, next) => {
   try {
     const { username, password } = req.body;
@@ -34,6 +35,7 @@ router.post('/register', async (req, res, next) => {
   }
 });
 
+//jwt 
 router.post('/authenticate', async (req, res, next) => {
   try {
     const { username, password } = req.body;

@@ -9,6 +9,7 @@ import indexRouter from './routes/index.js';
 import movie from './routes/movie.js';
 import director from './routes/director.js';
 import mongoose from 'mongoose';
+import verifyToken from './middle-ware/verify-token.js';
 
 //Config
 // import { api_secret_key } from './config.js'
@@ -36,8 +37,9 @@ app.use(cookieParser());
 
 // Set up routes
 app.use('/', indexRouter);
-app.use('/movies', movie);
-app.use('/director', director);
+app.use('/api/', verifyToken)
+app.use('/api/movies', movie);
+app.use('/api/director', director);
 
 
 

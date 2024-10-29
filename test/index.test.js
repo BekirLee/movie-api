@@ -16,24 +16,26 @@
 //     });
 // });
 
-import * as chai from 'chai';
-import chaiHttp from 'chai-http';
-import { request } from 'chai-http';
 import server from '../app.js';
 
-const { expect } = chai;
-chai.use(chaiHttp);
+import { use } from 'chai'
+import chaiHttp from 'chai-http'
+const chai = use(chaiHttp);
+const should=chai.should();
+
 
 describe('Node server tests', () => {
-  it("GET / - should return the main page", done => {
-    request(server)
+  it("GET / - should return the main page", (done) => {
+    chai.request.execute(server)
       .get('/')
       .end((err, res) => {
-        expect(res).to.have.status(200);
+       res.should.have.status(200); // Use expect for assertions
         done();
       });
   });
 });
+
+
 
 
 

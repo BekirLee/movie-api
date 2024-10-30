@@ -100,7 +100,7 @@ describe('/api/movies tests', () => {
     })
   })
 
-  //
+  //update movies
   describe('put movies ', () => {
     it('it should update movie given by id!', (done) => {
       const movie = {

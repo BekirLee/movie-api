@@ -16,7 +16,6 @@ router.post('/register', async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
-    // username ve password kontrolü
     if (!username || !password) {
       return res.json({ message: 'Username and password are required' });
     }

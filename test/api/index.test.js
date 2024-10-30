@@ -109,7 +109,7 @@ describe('/api/movies tests', () => {
         country: 'Azerbaijan',
         year: 2024,
         category: 'crime',
-        imdb: 8
+        imdb: 8 
       };
 
       chai.request.execute(server)

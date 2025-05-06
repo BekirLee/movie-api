@@ -1,7 +1,7 @@
 [![Build status](https://api.travis-ci.org/meseven/node-egitimi-movie-api.svg)](https://travis-ci.org/meseven/node-egitimi-movie-api)
 
 # movie-api
-Udemy üzerinden yardim alaraq yazilmis restfull movie API ["Sıfırdan Her Yönüyle Node.JS"](http://bit.ly/ndjsm) adlı eğitim setinde "Express ve MongoDB ile Restful API Geliştirme Projesi" bölümünde kullanılan repodur.
+(http://bit.ly/ndjsm)"Express ve MongoDB ile Restful API
 
 
 # Movies
